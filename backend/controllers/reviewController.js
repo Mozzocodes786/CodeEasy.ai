@@ -4,7 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
 
 
-// ✅ AI REVIEW
+// AI REVIEW
 export const generateReview = async (req, res) => {
   try {
     const { prompt } = req.body;
@@ -43,7 +43,7 @@ ${prompt}
 
     const output = result.response.text();
 
-    // ✅ SAVE TO DB
+    //  SAVE TO DB
     await Review.create({
       userId: req.user.id,
       code: prompt,
@@ -54,16 +54,24 @@ ${prompt}
     res.json({ output });
 
   } catch (err) {
-    console.log("AI ERROR:", err.message);
+  console.log("AI ERROR:", err.message);
 
-    res.json({
-      output: "AI service unavailable. Basic feedback: check syntax and structure.",
-    });
-  }
+  res.json({
+    output: `
+AI temporarily unavailable.
+
+Basic Review:
+ Ensure proper function structure
+ Use return statements
+ Avoid console.log in production
+ Follow best coding practices
+    `,
+  });
+}
 };
 
 
-// ✅ GET HISTORY
+//  GET HISTORY
 export const getHistory = async (req, res) => {
   try {
     const reviews = await Review.find({
@@ -79,7 +87,7 @@ export const getHistory = async (req, res) => {
 };
 
 
-// ✅ DELETE REVIEW
+//  DELETE REVIEW
 export const deleteReview = async (req, res) => {
   try {
     await Review.findByIdAndDelete(req.params.id);

@@ -9,23 +9,23 @@ import { errorHandler } from "./middleware/errorMiddleware.js";
 
 
 
-// ✅ FIRST create app
+//  FIRST create app
 const app = express();
 
-// ✅ THEN use middleware
+//  THEN use middleware
 app.use(cors());
 app.use(express.json());
 
-// ✅ Health check
+//  Health check
 app.get("/api/health", (req, res) => {
   res.json({ status: "OK" });
 });
 
-// ✅ Routes
+//  Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/reviews", reviewRoutes);
 
-// ✅ Error handler (last)
+//  Error handler (last)
 app.use(errorHandler);
 
 export default app;

@@ -10,7 +10,7 @@ export default function Review() {
   const [activeIndex, setActiveIndex] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // ✅ Auth + load history
+  //  Auth + load history
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -22,7 +22,7 @@ export default function Review() {
     fetchHistory();
   }, []);
 
-  // ✅ Fetch history
+  //  Fetch history
   const fetchHistory = async () => {
     const token = localStorage.getItem("token");
 
@@ -41,14 +41,14 @@ export default function Review() {
     }
   };
 
-  // 🔥 NEW CHAT
+  //  NEW CHAT
   const handleNewChat = () => {
     setCode("");
     setOutput("");
     setActiveIndex(null);
   };
 
-  // 🔥 DELETE SINGLE
+  //  DELETE SINGLE
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
 
@@ -62,7 +62,7 @@ export default function Review() {
     fetchHistory();
   };
 
-  // 🔥 CLEAR ALL
+  //  CLEAR ALL
   const handleClearAll = async () => {
     const token = localStorage.getItem("token");
 
@@ -79,7 +79,7 @@ export default function Review() {
     handleNewChat();
   };
 
-  // 🔥 EXPORT
+  //  EXPORT
   const handleExport = () => {
     if (!output) return;
 
@@ -94,13 +94,13 @@ export default function Review() {
     a.click();
   };
 
-  // 🔥 LOGOUT
+  //  LOGOUT
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
 
-  // 🔥 REVIEW API
+  //  REVIEW API
   const handleReview = async () => {
     if (!code) return;
 
@@ -138,7 +138,7 @@ export default function Review() {
     setLoading(false);
   };
 
-  // 🔥 LOAD HISTORY ITEM
+  //  LOAD HISTORY ITEM
   const handleHistoryClick = (item, index) => {
     setCode(item.code);
     setOutput(item.output);
@@ -148,7 +148,7 @@ export default function Review() {
   return (
     <div className="flex h-screen bg-gradient-to-br from-pink-50 via-white to-sky-50">
 
-      {/* 🔥 SIDEBAR */}
+      {/*  SIDEBAR */}
       <div className="w-72 bg-white border-r p-4 flex flex-col">
 
         <button
@@ -196,7 +196,7 @@ export default function Review() {
         </div>
       </div>
 
-      {/* 🔥 MAIN */}
+      {/*  MAIN */}
       <div className="flex-1 flex items-center justify-center px-6">
         <div className="w-full max-w-3xl bg-white rounded-2xl shadow-2xl border p-8">
 
